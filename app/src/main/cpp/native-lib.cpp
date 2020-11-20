@@ -27,6 +27,7 @@ Java_ua_zt_mezon_myjnacallbacktest_MainActivity_stringFromJNI(
 
     return env->NewStringUTF(hello.c_str());
 }
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nsubscribeListener(JNIEnv *env, jobject instance,
@@ -49,9 +50,8 @@ Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nsubscribeListener(JNIEnv *env, 
 
     __android_log_print(ANDROID_LOG_VERBOSE, "GetEnv:", " Subscribe to Listener  OK \n");
     if (NULL == store_method) return;
-
-
 }
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_ua_zt_mezon_myjnacallbacktest_MainActivity_ndismissListener(JNIEnv *env, jobject instance) {
@@ -68,7 +68,7 @@ Java_ua_zt_mezon_myjnacallbacktest_MainActivity_ndismissListener(JNIEnv *env, jo
 }
 
 void test_string_callback_fom_c(char *val) {
-    __android_log_print(ANDROID_LOG_VERBOSE, "GetEnv:", " start Callback  to JNL [%d]  \n", val);
+    __android_log_print(ANDROID_LOG_VERBOSE, "GetEnv:", " start Callback  to JNL [%s]  \n", val);
     JNIEnv *g_env;
     if (NULL == jvm) {
         __android_log_print(ANDROID_LOG_ERROR, "GetEnv:", "  No VM  \n");
@@ -111,7 +111,6 @@ JNIEXPORT void JNICALL
 Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nonNextListener(JNIEnv *env, jobject instance,
                                                                 jstring message_) {
 
-
     txtCallback(env, message_);
 
 }
@@ -122,6 +121,5 @@ void txtCallback(JNIEnv *env, const _jstring *message_) {
             env->CallVoidMethod(store_Wlistener_vector[i]->store_Wlistener,
                                 store_Wlistener_vector[i]->store_method, message_);
         }
-
     }
 }

@@ -15,10 +15,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private MainActivityPresenter mPresenter;
+    private JNIListener nlistener;
+
     private TextView tvPresenter;
     private TextView tvAct;
-    private EditText mEditText;
-    private JNIListener nlistener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mPresenter = new MainActivityPresenterImpl(this);
         nsubscribeListener((MainActivityPresenterImpl) mPresenter);
 
-        mEditText = findViewById(R.id.edit_text);
+        EditText mEditText = findViewById(R.id.edit_text);
         mEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        tvPresenter = (TextView) findViewById(R.id.sample_text_from_Presenter);
+        tvPresenter = findViewById(R.id.sample_text_from_Presenter);
 
-        tvAct = (TextView) findViewById(R.id.sample_text_from_act);
+        tvAct = findViewById(R.id.sample_text_from_act);
 
         nlistener = new JNIListener() {
             @Override
